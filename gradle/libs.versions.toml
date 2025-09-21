@@ -5,18 +5,18 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.8.3"
 activityCompose = "1.9.1"
 composeBom = "2024.04.01"
 
 hiltNavigationCompose = "1.2.0"
 navigationCompose = "2.8.9"
 converterKotlinxSerialization = "2.11.0"
-hiltAndroid = "2.54"
+hiltAndroid = "2.50"
 kotlinSerializationCompilerPlugin = "2.1.10"
 kotlinxCoroutinesTest = "1.10.1"
-kotlinxSerializationJson = "1.7.3"
-retrofitVersion = "2.11.0"
+kotlinxSerializationJson = "1.6.3"
+retrofitVersion = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
