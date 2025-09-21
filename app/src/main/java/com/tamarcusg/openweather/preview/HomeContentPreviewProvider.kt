@@ -1,6 +1,5 @@
 package com.tamarcusg.openweather.preview
 
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.datasource.CollectionPreviewParameterProvider
 import com.tamarcusg.openweather.util.LoadingState
 

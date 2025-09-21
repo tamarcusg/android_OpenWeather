@@ -1,5 +1,6 @@
 package com.tamarcusg.openweather
 
+import com.tamarcusg.openweather.forecast.ForecastViewModel
 import com.tamarcusg.openweather.home.HomeViewModel
 import com.tamarcusg.openweather.repository.ApiService
 import com.tamarcusg.openweather.repository.OpenWeatherRepository
@@ -50,4 +51,8 @@ object AppModule {
     internal fun provideHomeViewModel(
         openWeatherRepository: OpenWeatherRepository
     ): HomeViewModel = HomeViewModel(openWeatherRepository)
+
+    @Singleton
+    @Provides
+    internal fun provideForecastViewModel(): ForecastViewModel = ForecastViewModel()
 }

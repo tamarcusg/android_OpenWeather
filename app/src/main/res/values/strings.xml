@@ -3,4 +3,5 @@
     <string name="city_search_hint">Enter City</string>
     <string name="city_search_button">Lookup</string>
     <string name="error_no_city">City not found with name \"%s\"</string>
+    <string name="label_temperature">Temp: %s</string>
 </resources>

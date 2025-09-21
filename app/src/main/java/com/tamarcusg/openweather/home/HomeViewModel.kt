@@ -25,7 +25,7 @@ internal class HomeViewModel @Inject constructor(
     override fun handleEvent(event: UIEvent) {
         when (event) {
             is HomeUIEvent.SearchStringChanged -> {
-                _state.value = _state.value.copy(searchString = event.newString)
+                _state.update { it.copy(searchString = event.newString) }
             }
 
             is HomeUIEvent.OnSearchClick -> {

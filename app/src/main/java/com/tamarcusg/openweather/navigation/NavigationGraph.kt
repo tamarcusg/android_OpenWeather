@@ -15,8 +15,10 @@ internal fun NavGraphBuilder.navigationGraph(
         startDestination = HomeScreenRoute
     ) {
 
-        homeScreenRoute(
+        homeContentRoute(
             navController = navController
         )
+
+        forecastContentRoute()
     }
 }

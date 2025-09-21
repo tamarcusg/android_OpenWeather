@@ -33,6 +33,7 @@ import com.tamarcusg.openweather.R
 import com.tamarcusg.openweather.preview.HomeContentPreviewData
 import com.tamarcusg.openweather.preview.HomeContentPreviewProvider
 import com.tamarcusg.openweather.preview.OpenWeatherPreview
+import com.tamarcusg.openweather.repository.model.Forecast
 import com.tamarcusg.openweather.util.LoadingState
 
 @Composable
@@ -40,11 +41,11 @@ internal fun HomeContent(
     modifier: Modifier = Modifier,
     uiState: HomeUIState,
     onHandleEvent: (HomeUIEvent) -> Unit,
-    navController: NavController
+    onForecastLoaded: (List<Forecast>) -> Unit
 ) {
     LaunchedEffect(uiState.loadingState) {
         if (uiState.loadingState is LoadingState.Loaded) {
-            // Navigate to the Weather Screen
+            onForecastLoaded(uiState.loadingState.forecasts)
         }
     }
 
@@ -124,6 +125,6 @@ private fun HomeContentPreview(
             loadingState = previewData.loadingState
         ),
         onHandleEvent = {},
-        navController = rememberNavController()
+        onForecastLoaded = {}
     )
 }
