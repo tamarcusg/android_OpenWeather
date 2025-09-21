@@ -44,6 +44,10 @@ internal class HomeViewModel @Inject constructor(
                     }
                 }
             }
+
+            is HomeUIEvent.ResetState -> {
+                _state.update { HomeUIState() }
+            }
         }
     }
 }

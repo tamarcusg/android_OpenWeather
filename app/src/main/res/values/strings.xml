@@ -4,4 +4,7 @@
     <string name="city_search_button">Lookup</string>
     <string name="error_no_city">City not found with name \"%s\"</string>
     <string name="label_temperature">Temp: %s</string>
+    <string name="label_feels_like">Feels Like: %s</string>
+
+    <string name="cd_close_button">Close</string>
 </resources>

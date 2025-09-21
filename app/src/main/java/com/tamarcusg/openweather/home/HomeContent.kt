@@ -27,8 +27,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.tamarcusg.openweather.R
 import com.tamarcusg.openweather.preview.HomeContentPreviewData
 import com.tamarcusg.openweather.preview.HomeContentPreviewProvider
@@ -46,6 +44,7 @@ internal fun HomeContent(
     LaunchedEffect(uiState.loadingState) {
         if (uiState.loadingState is LoadingState.Loaded) {
             onForecastLoaded(uiState.loadingState.forecasts)
+            onHandleEvent(HomeUIEvent.ResetState)
         }
     }
 

@@ -24,8 +24,7 @@ internal class ForecastViewModel @Inject constructor() : OpenWeatherViewModel, V
             is ForecastUIEvent.ForecastClicked -> {
                 _state.update {
                     it.copy(
-                        selectedForecast = event.forecast,
-                        isBottomSheetVisible = true
+                        selectedForecast = event.forecast
                     )
                 }
             }
@@ -33,7 +32,6 @@ internal class ForecastViewModel @Inject constructor() : OpenWeatherViewModel, V
             is ForecastUIEvent.DismissBottomSheet -> {
                 _state.update {
                     it.copy(
-                        isBottomSheetVisible = false,
                         selectedForecast = null
                     )
                 }
