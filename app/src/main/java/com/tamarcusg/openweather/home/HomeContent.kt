@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,6 +42,8 @@ internal fun HomeContent(
     onHandleEvent: (HomeUIEvent) -> Unit,
     onForecastLoaded: (List<Forecast>) -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     LaunchedEffect(uiState.loadingState) {
         if (uiState.loadingState is LoadingState.Loaded) {
             onForecastLoaded(uiState.loadingState.forecasts)
@@ -92,17 +95,24 @@ internal fun HomeContent(
             keyboardActions = KeyboardActions(
                 onSearch = {
                     onHandleEvent(HomeUIEvent.OnSearchClick)
+                    keyboardController?.hide()
                 }
             )
         )
+        val isButtonEnabled = uiState.searchString.isNotBlank()
         TextButton(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             onClick = { onHandleEvent(HomeUIEvent.OnSearchClick) },
             shape = RoundedCornerShape(percent = 25),
             border = BorderStroke(
                 width = 1.dp,
-                color = MaterialTheme.colorScheme.primary
+                color = if (isButtonEnabled) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
+                }
             ),
+            enabled = isButtonEnabled
         ) {
             if (uiState.loadingState is LoadingState.Loading) {
                 CircularProgressIndicator()
