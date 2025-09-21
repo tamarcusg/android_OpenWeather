@@ -99,20 +99,19 @@ internal fun HomeContent(
                 }
             )
         )
-        val isButtonEnabled = uiState.searchString.isNotBlank()
         TextButton(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
             onClick = { onHandleEvent(HomeUIEvent.OnSearchClick) },
             shape = RoundedCornerShape(percent = 25),
             border = BorderStroke(
                 width = 1.dp,
-                color = if (isButtonEnabled) {
+                color = if (uiState.isSearchButtonEnabled) {
                     MaterialTheme.colorScheme.primary
                 } else {
                     MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f)
                 }
             ),
-            enabled = isButtonEnabled
+            enabled = uiState.isSearchButtonEnabled
         ) {
             if (uiState.loadingState is LoadingState.Loading) {
                 CircularProgressIndicator()
