@@ -25,8 +25,8 @@ internal fun ForecastRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 36.dp, vertical = 12.dp)
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .padding(horizontal = 36.dp, vertical = 12.dp),
     ) {
         Text(forecast.weatherDescriptions.first().description)
         Spacer(modifier = Modifier.weight(1f))

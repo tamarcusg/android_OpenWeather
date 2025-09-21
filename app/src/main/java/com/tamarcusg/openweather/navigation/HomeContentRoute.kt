@@ -9,18 +9,24 @@ import com.tamarcusg.openweather.forecast.ForecastUIEvent
 import com.tamarcusg.openweather.forecast.ForecastViewModel
 import com.tamarcusg.openweather.home.HomeContent
 import com.tamarcusg.openweather.home.HomeViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.serialization.Serializable
 
 @Serializable
 internal data object HomeScreenRoute
 
 internal fun NavGraphBuilder.homeContentRoute(
-    navController: NavController
+    navController: NavController,
+    mutableTopAppBarUIState: MutableStateFlow<TopAppBarUIState>
 ) {
     composable<HomeScreenRoute> {
         val homeViewModel: HomeViewModel = hiltViewModel()
         val homeUiState = homeViewModel.state.collectAsStateWithLifecycle().value
         val forecastViewModel: ForecastViewModel = hiltViewModel()
+
+        mutableTopAppBarUIState.update { TopAppBarUIState() }
+
         HomeContent(
             uiState = homeUiState,
             onHandleEvent = homeViewModel::handleEvent,
@@ -28,7 +34,7 @@ internal fun NavGraphBuilder.homeContentRoute(
                 forecastViewModel.handleEvent(
                     ForecastUIEvent.PopulateForecastList(forecastList)
                 )
-                navController.navigate(ForecastContentRoute)
+                navController.navigate(ForecastContentRoute(homeUiState.searchString))
             }
         )
     }
